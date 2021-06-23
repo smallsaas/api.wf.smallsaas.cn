@@ -1,0 +1,34 @@
+version: '3.4'
+services:
+  api:
+    image: api:uaas
+    container_name: api_uaas
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./config/application-dev.yml:/webapps/config/application-dev.yml
+    ports: 
+      - 8080:8080
+    depends_on: 
+      - mysqlserver
+
+  mysqlserver:
+    image: daocloud.io/library/mysql:5.7
+    container_name: mysqlserver
+    privileged: true
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: uaas
+    volumes:
+        - ./mysql/mysql.conf.d/sql_mode.cnf:/etc/mysql/mysql.conf.d/sql_mode.cnf
+
+  # busybox:
+  #   image: daocloud.io/library/busybox
+  #   container_name: busybox
+
+networks:
+  default:
+    name: api_uaas_network
+    external: false

@@ -1,0 +1,10 @@
+logs/
+.idea/
+*.iml
+.gradle/
+target/
+.classpath
+.factorypath
+.project
+.settings/
+.vscode/

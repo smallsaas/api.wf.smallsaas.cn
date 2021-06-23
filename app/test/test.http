@@ -1,0 +1,19 @@
+### 示例
+GET https://example.com/topics/1 HTTP/1.1
+
+@endpoint = http://localhost:8080
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJvcmdJZCI6IjEwMDAwMDAwMDAwMDAwMDAwMSIsInVzZXJJZCI6Ijg3NjcwODA4MjQzNzE5NzgyNyIsInVzZXJUeXBlIjoxMDEsImJVc2VyVHlwZSI6IlNZU1RFTSIsInRlbmFudE9yZ0lkIjoxMDAwMDAwMDAwMDAwMDAwMDEsImFjY291bnQiOiJhZG1pbiIsImV4dHJhVXNlclR5cGUiOjAsImlhdCI6MTYxNTM1MTI3MCwianRpIjoiODc2NzA4MDgyNDM3MTk3ODI3Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE2MTU2MTA0NzB9.yZY6QgNW-1DmJrldOQLjMAje37d3-_GQrxy-mk4_NfuZnFALdrWbbjWn_LaHk04wuIQdDw89uvj8BuSt7KMRZQ
+
+### 登录
+POST {{endpoint}}/api/sys/oauth/login HTTP/1.1
+content-type: application/json
+
+{
+    "account": "admin",
+    "password": "111111"
+}
+
+### 列表, 无法返回跨域信息 Access-Control-Allow-Origin: *
+GET {{endpoint}}/api/adm/users
+content-type: application/json
+Authorization: Bearer {{token}}

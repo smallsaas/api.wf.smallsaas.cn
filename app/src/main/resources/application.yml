@@ -1,0 +1,86 @@
+server:
+  port: 8080
+
+account:
+  #是否启动时重置管理员权限
+  reset-admin-perms: false
+  enable-captcha: true
+  allow-platform-user-register: false
+  allow-app-user-register: true
+  check-reset-password: true
+
+spring:
+  profiles:
+    active: dev
+  mvc:
+    static-path-pattern: /**
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+    converters:
+      preferred-json-mapper: fastjson
+  mail:
+    host: smtp.126.com
+    port: 25
+    username: jiajiajia5000@126.com
+    password: CFERNTQPRZYHBRXO
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  resources:
+    static-locations: file:/attachments/
+#github登录模块配置
+#配置类 com.jfeat.am.uaas.github.model.GitHubSetting
+GitHub:
+  client-id: 9256baf36c5aa289d2d2
+  client-secret: 8fb3c6bb0ef512c2cd5b4be657206679676a64e0
+
+###################  jwt配置  ###################
+jwt:
+  encoded-key: L7A/6zARSkK1j7Vd5SDD9pSSqZlqF7mAhiOgRbgv9Smce6tf4cJnvKOjtKPxNNnWQj+2lQEScm3XIUjhW+YVZg==
+
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss
+
+mybatis-plus:
+  mapper-locations: classpath*:com/jfeat/**/mapping/*.xml
+  typeAliasesPackage: com.jfeat.**.model
+  global-config:
+    id-type: 2  #0:数据库ID自增   1:用户输入id   2:全局唯一id(IdWorker)   3:全局唯一ID(uuid)  4: 该类型为未设置主键类型(none)
+    db-column-underline: true
+    refresh-mapper: true
+    logic-delete-value: -1
+    logic-not-delete-value: 1
+    #sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+---
+
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/eav?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: log4j,wall,mergeStat
+    sql-script-encoding: UTF-8
+    schema: classpath*:sql/**/*-schema.sql
+    data: classpath*:sql/**/*-data.sql
+    initialize: false
+
+logging:
+  level: debug
+  file: logs/trace.log
+---

@@ -1,0 +1,32 @@
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://mysqlserver:3306/uaas?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    filters: log4j,mergeStat
+    sql-script-encoding: UTF-8
+    schema: classpath*:sql/*-schema.sql
+    data: classpath*:sql/*-data.sql
+    initialize: true
+
+  #email:class: com.jfeat.am.module.email.mail.MailSenderInfo
+  mail:
+    host: smtp.126.com
+    port: 25
+    username: jiajiajia5000@126.com
+    password: CFERNTQPRZYHBRXO
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+#github:class: com.jfeat.am.uaas.github.model.GitHubSetting
+GitHub:
+  client-id: 9256baf36c5aa289d2d2
+  client-secret: 8fb3c6bb0ef512c2cd5b4be657206679676a64e0
+
