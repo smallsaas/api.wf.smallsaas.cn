@@ -3,7 +3,9 @@ version: '3.4'
 services:
   api:
     image: api:workflow
-    container_name: api_workflow
+    container_name: app-workflow
+    privileged: true
+    working_dir: /webapps
     extra_hosts:
       - "mysqlserver:192.168.65.2"
     build:
