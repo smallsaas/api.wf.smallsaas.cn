@@ -4,12 +4,11 @@ services:
     image: daocloud.io/library/mysql:5.7
     container_name: mysqlserver
     privileged: true
-    restart: always
     environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: uaas
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: uaas
     volumes:
-        - ./mysql.conf.d/sql_mode.cnf:/etc/mysql/mysql.conf.d/sql_mode.cnf
+      - ./mysql.conf.d/sql_mode.cnf:/etc/mysql/mysql.conf.d/sql_mode.cnf
 
 networks:
   default:

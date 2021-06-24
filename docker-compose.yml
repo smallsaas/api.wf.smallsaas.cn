@@ -4,6 +4,8 @@ services:
   api:
     image: api:workflow
     container_name: api_workflow
+    extra_hosts:
+      - "mysqlserver:192.168.65.2"
     build:
       context: .
       dockerfile: ./Dockerfile
