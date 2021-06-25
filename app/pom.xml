@@ -30,7 +30,7 @@
 
         <dependency>
             <groupId>com.jfeat</groupId>
-            <artifactId>crud-app-bundle</artifactId>
+            <artifactId>sports-app</artifactId>
             <version>1.0.0</version>
         </dependency>
 
